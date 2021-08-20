@@ -1,4 +1,4 @@
-# Lesson 1 - Select and Sort Data
+# 📍 Lesson 1 - Select and Sort Data
 
 * Select all Columns
 ```sql
@@ -57,7 +57,7 @@ LIMIT 5;
       3. as alpnabets
   * Can also apply DESC with these records
 
-# Exercises 
+# 📍 Exercises 
 
 1. What is the name of the category with the highest category_id in the dvd_rentals.category table?
 ```sql
