@@ -1,4 +1,4 @@
-# Lesson 2 - Record Counts and Distinct Values
+# 📍Lesson 2 - Record Counts and Distinct Values
 
 * Total number of Records
 ```sql
@@ -44,7 +44,7 @@ GROUP BY rating, category
 ORDER BY count DESC 
 LIMIT 5;
 ```
-# Exercises
+# 📍 Exercises
 
 1. Which actor_id has the most number of unique film_id records in the dvd_rentals.film_actor table?
 ```sql
