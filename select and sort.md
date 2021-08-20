@@ -17,6 +17,8 @@ SELECT *
 FROM dvd_rentals.actor
 LIMIT 10;
 ```
+In SQL Server and Teradata TOP is used instead of LIMIT and it is placed infront of SELECT statement.
+
 * Sort by text column
 ```sql
 SELECT country
@@ -46,6 +48,14 @@ FROM dvd_rentals.actor
 ORDER BY first_name, last_nmae
 LIMIT 5;
 ```
+* Order by Non - Alphabetical Characters 
+  * If null present in column after sorting records containing null end up at the last of the table.
+  * If specified NULLS FIRST records containing null end up at the first of the table. 
+  * Ordering is done as follows for strings 
+      1. as Numbers
+      2. starting with Special characters like '_'. '*' ' '
+      3. as alpnabets
+  * Can also apply DESC with these records
 
 # Exercises 
 
