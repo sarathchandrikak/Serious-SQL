@@ -1,4 +1,4 @@
-# Select and Sort Data
+# Lesson 1 - Select and Sort Data
 
 * Select all Columns
 ```sql
