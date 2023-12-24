@@ -137,8 +137,54 @@ limit
 ```
 
 4. How many single duplicated rows exist when measure = 'blood_pressure' in the health.user_logs? How about the total number of duplicate records in the same table?
+```sql
+WITH groupby_counts AS (
+  SELECT
+    id,
+    log_date,
+    measure,
+    measure_value,
+    systolic,
+    diastolic,
+    COUNT(*) AS frequency
+  FROM health.user_logs
+  WHERE measure = 'blood_pressure'
+  GROUP BY
+    id,
+    log_date,
+    measure,
+    measure_value,
+    systolic,
+    diastolic
+)
+SELECT
+  COUNT(*) as single_duplicate_rows,
+  SUM(frequency) as total_duplicate_records
+FROM groupby_counts
+WHERE frequency > 1;
+```
+  
 5. What percentage of records measure_value = 0 when measure = 'blood_pressure' in the health.user_logs table? How many records are there also for this same condition?
-6. What percentage of records are duplicates in the health.user_logs table?
+```sql
+WITH all_measure_values AS (
+  SELECT
+    measure_value,
+    COUNT(*) AS total_records,
+    SUM(COUNT(*)) OVER () AS overall_total
+  FROM health.user_logs
+  WHERE measure = 'blood_pressure'
+  GROUP BY 1
+)
+SELECT
+  measure_value,
+  total_records,
+  overall_total,
+  ROUND(100 * total_records::NUMERIC / overall_total, 2) AS percentage
+FROM all_measure_values
+WHERE measure_value = 0;
+```
+
+7. What percentage of records are duplicates in the health.user_logs table?
 ```sql
 WITH all_measure_values AS (
   SELECT
@@ -159,11 +205,3 @@ FROM
 WHERE
   measure_value = 0;
 ```
-
-
-
-
-
-
-
-
