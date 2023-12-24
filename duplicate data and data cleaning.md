@@ -186,22 +186,43 @@ WHERE measure_value = 0;
 
 7. What percentage of records are duplicates in the health.user_logs table?
 ```sql
-WITH all_measure_values AS (
+WITH groupby_counts AS (
   SELECT
+    id,
+    log_date,
+    measure,
     measure_value,
-    COUNT(*) AS total_records,
-    SUM(COUNT(*)) OVER () AS overall_total
-  FROM
-    health.user_logs
-  WHERE
-    measure = 'blood_pressure'
+    systolic,
+    diastolic,
+    COUNT(*) AS frequency
+  FROM health.user_logs
   GROUP BY
-    1
+    id,
+    log_date,
+    measure,
+    measure_value,
+    systolic,
+    diastolic
 )
 SELECT
-  ROUND(100 * total_records :: NUMERIC / overall_total, 2) AS percentage
-FROM
-  all_measure_values
-WHERE
-  measure_value = 0;
+  ROUND(
+    100 * SUM(CASE
+        WHEN frequency > 1 THEN frequency - 1
+        ELSE 0 END
+    )::NUMERIC / SUM(frequency),
+    2
+  ) AS duplicate_percentage
+FROM groupby_counts;
 ```
+
+
+# Additional Notes
+
+* Remove all duplicate records from a dataset using DISTINCT
+* Use Common Table Expressions and subqueries to calculate unique record counts
+* Clean up existing temporary tables using the DROP TABLE IF EXISTS
+* Create temporary tables using the results from a SELECT statement
+* Detect the presence of duplicates by comparing basic record counts with unique counts
+* Identify exact duplicate records using a GROUP BY on all columns in a table
+* Calculate the number of occurences a record appears in a table
+* Filter records from a SELECT statement with a GROUP BY using the HAVING clause
