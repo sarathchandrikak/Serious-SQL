@@ -1,4 +1,4 @@
-📍 Lesson 5 - Distribution Functions
+# 📍 Lesson 5 - Distribution Functions
 
 Cumulative distribution: The probability of any value between the minimum value of our dataset X and the value V as shown below
 <img width="378" alt="image" src="https://github.com/sarathchandrikak/Serious-SQL/assets/65502906/15632de0-0e69-4199-b79f-0fbcf6508cb8">
