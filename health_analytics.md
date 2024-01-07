@@ -1,4 +1,5 @@
-📍 Health Care Analytics - Case Study
+# 📍 Health Care Analytics - Case Study
+
 
 Please find the dataset used to answer the questions here - [users](https://github.com/sarathchandrikak/Serious-SQL/blob/main/health_users.csv), [user_logs](https://github.com/sarathchandrikak/Serious-SQL/blob/main/health_user_logs.csv)
 
